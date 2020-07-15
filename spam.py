@@ -27,7 +27,7 @@ def main():
     # Spam input, followed by handling
 
     spam = input("What to spam: ")
-    amount = input("How many times: ")
+    amount = input("How many times (0 to loop forever): ")
 
     # Default iterations set to 0
 
@@ -36,10 +36,6 @@ def main():
     try:
         iterations = int(amount)
 
-        # If iterations still equal 0, raise to except block
-
-        if iterations == 0:
-            raise
     except:
 
         # if "amount" input isn't a string which can be parsed to and int, raise
@@ -58,13 +54,17 @@ def main():
 
     # Spam loop
 
-    for x in range(0, iterations):
+    count = 0
+    while True:
+        if iterations != 0:
+            if count >= iterations: 
+                break
         if len(spamBuilder) >= 500:
-            print(x)
-            break
+            spamBuilder = spam
         else:
             spamThis(spamBuilder)
             spamBuilder += " " + spam
+        count += 1
 
     print("Done.")
 
